@@ -1,4 +1,4 @@
-# 크롤링 프로그램
+# 카카오맵 크롤링 프로그램
 
 # 웹사이트 연결
 from selenium import webdriver
