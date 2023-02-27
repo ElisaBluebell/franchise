@@ -32,7 +32,7 @@ page = (temp_page // 15) + 1
 f = open("jeju_cafe_list.csv", "w", encoding="utf-8")
 f.write("업소명, 주소, 리뷰")
 
-for j in range(1, page + 1):
+for j in range(1, page):
     for i in range(1, 16):
         temp_address = driver.find_element(By.XPATH, f"""//*[@id="info.search.place.list"]/li[{i}]/div[5]/div[2]/p[1]""").text
         temp_name = driver.find_element(By.XPATH, f"""//*[@id="info.search.place.list"]/li[{i}]/div[3]/strong/a[2]""").text
@@ -40,7 +40,7 @@ for j in range(1, page + 1):
         if temp_address[:6] == "제주특별자치":
             print("카페명: ", temp_name, "카페 주소: ", temp_address, "리뷰 갯수: ", temp_review)
             f.write(temp_name + "," + temp_address + "," + temp_review + "\n")
-            time.sleep(0.5)
+            time.sleep(1)
 
     if page % 5 == 0:
         driver.find_element(By.XPATH, """// *[ @ id = "info.search.page.next"]""").send_keys(Keys.ENTER)
