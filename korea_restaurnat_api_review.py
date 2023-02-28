@@ -79,10 +79,10 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
 keyword = '음식점'
 start_x = 125.09
 start_y = 33.00
-next_x = 0.5
-next_y = 0.5
-num_x = 13
-num_y = 12
+next_x = 1
+next_y = 1
+num_x = 7
+num_y = 7
 
 overlapped_result = overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y)
 
@@ -114,7 +114,7 @@ def get_dom(query):
 
 
 # 기본 정보 저장
-file_name = "korea_restaurant_list"
+file_name = "korea_restaurant1_list"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 f.write("id, store, business, location, x, y, url\n")
 for i in range(len(results)):
@@ -138,7 +138,7 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 파일명
-file_name = "korea_restaurant_review_score"
+file_name = "korea_restaurant1_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
