@@ -129,7 +129,7 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 파일명
-file_name = "jeju_restaurant_list"
+file_name = "korea_starbucks_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")

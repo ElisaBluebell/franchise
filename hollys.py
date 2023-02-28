@@ -104,8 +104,8 @@ for place in results:
     ar = np.array([ID, stores, X, Y, road_address, place_url]).T
     df = pd.DataFrame(ar, columns=['ID', 'stores', 'X', 'Y', 'road_address', 'place_url'])
 
-# 스타벅스 기본 정보 저장
-file_name = "korea_starbucks_list"
+# 할리스 기본 정보 저장
+file_name = "korea_hollys_list"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 f.write("id, store, business, location, x, y, url\n")
 for i in range(len(results)):
@@ -129,7 +129,7 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 파일명
-file_name = "jeju_restaurant_list"
+file_name = "korea_hollys_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
