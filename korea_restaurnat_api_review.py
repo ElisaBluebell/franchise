@@ -76,7 +76,7 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
     return overlapped_result
 
 # 시작 x 좌표 및 증가값
-keyword = '카페'
+keyword = '음식점'
 start_x = 125.09
 start_y = 33.00
 next_x = 0.1
@@ -113,7 +113,7 @@ def get_dom(query):
     dom = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, query))
 
 
-# 스타벅스 기본 정보 저장
+# 기본 정보 저장
 file_name = "korea_restaurant_list"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 f.write("id, store, business, location, x, y, url\n")
