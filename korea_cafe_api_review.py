@@ -70,6 +70,7 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
             each_result = whole_region(keyword, start_x, initial_start_y, end_x, end_y)
             overlapped_result.extend(each_result)
             initial_start_y = end_y
+            time.sleep(1)
         start_x = end_x
 
     return overlapped_result
