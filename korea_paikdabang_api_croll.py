@@ -155,6 +155,7 @@ for i in range(len(results)):
     time.sleep(1)
 
     try:
+        // *[ @ id = "kakao_ad_e0JZsU"]
         temp_address = driver.find_element(
             By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[2]/p[1]"""
         ).text

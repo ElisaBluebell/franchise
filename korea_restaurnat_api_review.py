@@ -105,6 +105,14 @@ for place in results:
     ar = np.array([ID, stores, X, Y, road_address, place_url]).T
     df = pd.DataFrame(ar, columns=['ID', 'stores', 'X', 'Y', 'road_address', 'place_url'])
 
+
+def get_dom(query):
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.support.wait import WebDriverWait
+
+    dom = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, query))
+
+
 # 스타벅스 기본 정보 저장
 file_name = "korea_restaurant_list"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
@@ -155,6 +163,7 @@ for i in range(len(results)):
     search_line.send_keys(Keys.ENTER)
 
     try:
+        get_dom("""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em""")
         temp_address = driver.find_element(
             By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[2]/p[1]"""
         ).text
