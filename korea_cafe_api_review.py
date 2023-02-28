@@ -79,10 +79,10 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
 keyword = '카페'
 start_x = 125.09
 start_y = 33.00
-next_x = 0.1
-next_y = 0.1
-num_x = 61
-num_y = 58
+next_x = 0.5
+next_y = 0.5
+num_x = 13
+num_y = 12
 
 overlapped_result = overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y)
 
