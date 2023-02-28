@@ -75,7 +75,7 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
     return overlapped_result
 
 # 시작 x 좌표 및 증가값
-keyword = '스타벅스'
+keyword = '빽다방'
 start_x = 125.09
 start_y = 33.00
 next_x = 0.1
