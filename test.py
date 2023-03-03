@@ -29,7 +29,7 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 저장 파일명
-file_name = "jeju_seaside_review_score"
+file_name = "jeju_hotel_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
@@ -44,7 +44,7 @@ search_line = driver.find_element(
 
 
 # 오픈 파일명
-search_f = open("seasideDB.csv", "r", encoding="utf-8")
+search_f = open("jeju_hotel_list.csv", "r", encoding="utf-8")
 a = 0
 
 while True:
@@ -53,7 +53,7 @@ while True:
         if not line:
             break
         line = line.split(",")
-        search_source = line[2]
+        search_source = line[1]
 
         search_line.clear()
 
