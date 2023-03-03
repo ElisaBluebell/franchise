@@ -58,7 +58,7 @@ while True:
         search_line.clear()
 
         # 검색어 설정
-        word = search_source
+        word = f"제주도 {search_source}"
 
         # 검색어 입력 및 검색 실행
         search_line.send_keys(word)
