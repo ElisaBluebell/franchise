@@ -78,11 +78,15 @@ while True:
                 By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
             ).text
 
+            temp_category = driver.find_element(
+                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[3]/span"""
+            ).text
+
             print("name: ", search_source, "address: ", temp_address, "review: ", temp_review, "score: ",
-                  temp_score)
+                  temp_score, "category: ", temp_category)
 
             f.write(
-                f"""{search_source}, {temp_address}, {temp_review}, {temp_score}\n"""
+                f"""{search_source}, {temp_address}, {temp_review}, {temp_score}, {temp_category}\n"""
             )
 
         except:
