@@ -64,7 +64,7 @@ def overlapped_data(keyword, start_x, start_y, next_x, next_y, num_x, num_y):
     return overlapped_result
 
 # 시작 x 좌표 및 증가값
-keyword = '렌트카'
+keyword = '숙박업소'
 start_x = 126.14
 start_y = 33.11
 next_x = 0.01
@@ -96,7 +96,7 @@ for place in results:
 print(results)
 
 # 렌트카 기본 정보 저장
-file_name = "jeju_car_rental_list"
+file_name = "jeju_hotel_list"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 f.write("id, store, business, location, x, y, url\n")
 for i in range(len(results)):
