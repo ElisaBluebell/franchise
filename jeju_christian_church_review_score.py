@@ -35,7 +35,7 @@ file_name = "jeju_hotel_review_score"
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 
 # CSV 헤더 작성
-f.write("name, address, review, score\n")
+f.write("name, address, review, score, category\n")
 
 # 검색어 입력 칸 지정
 search_line = driver.find_element(
