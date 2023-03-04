@@ -12,19 +12,20 @@ from selenium.webdriver.common.by import By
 from geopy.geocoders import Nominatim
 # 매너
 import time
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
-def get_dom(query):
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.webdriver.support.wait import WebDriverWait
 
-    dom = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, query))
+
 
 # 암묵적 대기
 driver = webdriver.Chrome()
 driver.implicitly_wait(300)
 
+wait = WebDriverWait(driver, 10)
+
 # 사이트 접속
-driver.get('https://new.land.naver.com/complexes/106265?ms=33.492953,126.546986,17&a=APT:ABYG:JGC&e=RETAIL')
+driver.get('https://map.kakao.com/')
 
 geo_local = Nominatim(user_agent="South Korea")
 
@@ -39,9 +40,8 @@ f.write("name, address, house\n")
 
 # 검색어 입력 칸 지정
 search_line = driver.find_element(
-    By.XPATH, """//*[@id="search_input"]"""
+    By.XPATH, """//*[@id="search.keyword.query"]"""
 )
-
 
 # 오픈 파일명
 search_f = open("jeju_apartment_list.csv", "r", encoding="utf-8")
@@ -63,18 +63,28 @@ while True:
         # 검색어 입력 및 검색 실행
         search_line.send_keys(word)
         search_line.send_keys(Keys.ENTER)
-        time.sleep(0.1)
-        driver.find_element(
-            By.XPATH, f"""//*[@id="ct"]/div[2]/div[1]/div[2]/div/div/div[2]/div/a/div[1]"""
-        ).send_keys(Keys.ENTER)
+        time.sleep(0.5)
 
         if driver.find_element(
-                By.XPATH, f"""//*[@id="ct"]/div[2]/div[1]/div[2]/div/div/div/div/text()"""
-        ).text!="해당되는 검색결과가 없습니다.":
+                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[4]/a[1]"""
+        ).text != "부동산":
+            pass
+
+        else:
             try:
+                driver.find_element(
+                    By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[4]/a[1]"""
+                ).send_keys(Keys.ENTER)
+
+                # wait.until(EC.number_of_windows_to_be(2))
+
+                # driver.switch_to.new_window('tab')
+
+
                 temp_house = driver.find_element(
-                    By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
+                    By.XPATH, f"""//*[@id="__next"]/div[2]/div/div[2]/div/div/div[1]/div[2]/div[2]/div[3]/div/div/div/div[1]"""
                 ).text
+                driver.close()
 
                 print("name: ", search_source, "address: ", line[2], "house: ",
                       temp_house)
