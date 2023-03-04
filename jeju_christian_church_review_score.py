@@ -29,13 +29,13 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 저장 파일명
-file_name = "jeju_hotel_review_score"
+file_name = "jeju_accommodation_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 
 # CSV 헤더 작성
-f.write("name, address, review, score, category\n")
+f.write("name, address, review, score\n")
 
 # 검색어 입력 칸 지정
 search_line = driver.find_element(
@@ -44,7 +44,7 @@ search_line = driver.find_element(
 
 
 # 오픈 파일명
-search_f = open("jeju_hotel_list.csv", "r", encoding="utf-8")
+search_f = open("jeju_accommodation_list.csv", "r", encoding="utf-8")
 a = 0
 
 while True:
@@ -78,15 +78,11 @@ while True:
                 By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
             ).text
 
-            temp_category = driver.find_element(
-                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[3]/span"""
-            ).text
-
             print("name: ", search_source, "address: ", temp_address, "review: ", temp_review, "score: ",
-                  temp_score, "category: ", temp_category)
+                  temp_score)
 
             f.write(
-                f"""{search_source}, {temp_address}, {temp_review}, {temp_score}, {temp_category}\n"""
+                f"""{search_source}, {temp_address}, {temp_review}, {temp_score}\n"""
             )
 
         except:
