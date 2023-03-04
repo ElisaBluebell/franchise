@@ -76,6 +76,7 @@ while True:
                     By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[4]/a[1]"""
                 ).send_keys(Keys.ENTER)
 
+                wait = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH))
                 # wait.until(EC.number_of_windows_to_be(2))
 
                 # driver.switch_to.new_window('tab')
