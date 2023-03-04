@@ -24,27 +24,27 @@ driver = webdriver.Chrome()
 driver.implicitly_wait(300)
 
 # 사이트 접속
-driver.get('https://map.kakao.com/')
+driver.get('https://new.land.naver.com/complexes/106265?ms=33.492953,126.546986,17&a=APT:ABYG:JGC&e=RETAIL')
 
 geo_local = Nominatim(user_agent="South Korea")
 
 # 저장 파일명
-file_name = "jeju_pension_review_score"
+file_name = "jeju_apartment_houses"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
 
 # CSV 헤더 작성
-f.write("name, address, review, score\n")
+f.write("name, address, house\n")
 
 # 검색어 입력 칸 지정
 search_line = driver.find_element(
-    By.XPATH, """//*[@id="search.keyword.query"]"""
+    By.XPATH, """//*[@id="search_input"]"""
 )
 
 
 # 오픈 파일명
-search_f = open("jeju_pension_list.csv", "r", encoding="utf-8")
+search_f = open("jeju_apartment_list.csv", "r", encoding="utf-8")
 a = 0
 
 while True:
@@ -64,25 +64,20 @@ while True:
         search_line.send_keys(word)
         search_line.send_keys(Keys.ENTER)
         time.sleep(0.1)
+        driver.find_element(
+            By.XPATH, f"""//*[@id="ct"]/div[2]/div[1]/div[2]/div/div/div[2]/div/a/div[1]"""
+        ).send_keys(Keys.ENTER)
 
         try:
-            temp_address = driver.find_element(
-                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[5]/div[2]/p[1]"""
-            ).text
-
-            temp_score = driver.find_element(
-                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/span[1]/em[1]"""
-            ).text
-
-            temp_review = driver.find_element(
+            temp_house = driver.find_element(
                 By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
             ).text
 
-            print("name: ", search_source, "address: ", temp_address, "review: ", temp_review, "score: ",
-                  temp_score)
+            print("name: ", search_source, "address: ", line[2], "house: ",
+                  temp_house)
 
             f.write(
-                f"""{search_source}, {temp_address}, {temp_review}, {temp_score}\n"""
+                f"""{search_source}, {line[2]}, {temp_house}\n"""
             )
 
         except:
