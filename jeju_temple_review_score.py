@@ -68,20 +68,23 @@ while True:
             By.XPATH, f"""//*[@id="ct"]/div[2]/div[1]/div[2]/div/div/div[2]/div/a/div[1]"""
         ).send_keys(Keys.ENTER)
 
-        try:
-            temp_house = driver.find_element(
-                By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
-            ).text
+        if driver.find_element(
+                By.XPATH, f"""//*[@id="ct"]/div[2]/div[1]/div[2]/div/div/div/div/text()"""
+        ).text!="해당되는 검색결과가 없습니다.":
+            try:
+                temp_house = driver.find_element(
+                    By.XPATH, f"""//*[@id="info.search.place.list"]/li[1]/div[4]/a/em"""
+                ).text
 
-            print("name: ", search_source, "address: ", line[2], "house: ",
-                  temp_house)
+                print("name: ", search_source, "address: ", line[2], "house: ",
+                      temp_house)
 
-            f.write(
-                f"""{search_source}, {line[2]}, {temp_house}\n"""
-            )
+                f.write(
+                    f"""{search_source}, {line[2]}, {temp_house}\n"""
+                )
 
-        except:
-            pass
+            except:
+                pass
 
     a += 1
 
