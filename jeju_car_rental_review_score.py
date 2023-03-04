@@ -25,7 +25,7 @@ driver.get('https://map.kakao.com/')
 geo_local = Nominatim(user_agent="South Korea")
 
 # 저장 파일명
-file_name = "jeju_car_rental_review_score"
+file_name = "jeju_restaurant_review_score"
 
 # CSV 파일 생성
 f = open(f"{file_name}.csv", "w", encoding="utf-8")
@@ -40,7 +40,7 @@ search_line = driver.find_element(
 
 
 # 오픈 파일명
-search_f = open("jeju_car_rental_list.csv", "r", encoding="utf-8")
+search_f = open("jeju_restaurant_list.csv", "r", encoding="utf-8")
 a = 0
 
 while True:
@@ -54,7 +54,7 @@ while True:
         search_line.clear()
 
         # 검색어 설정
-        word = search_source
+        word = f"제주도 {search_source}"
 
         # 검색어 입력 및 검색 실행
         search_line.send_keys(word)
